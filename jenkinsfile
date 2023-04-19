@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    tools {
+        maven "M3"
+    }
+    stages {
+        stage('GitClone') {
+            steps {
+                git 'https://github.com/brahimhamdi/demoapp'
+            }
+        }
+        stage('Build') {
+            steps {
+                script
+                {
+                    if (isUnix()) 
+                    {
+                        sh 'mvn -fn clean package'
+                    }
+                    else
+                    {
+                        bat 'mvn -fn clean package'
+                    }
+                 }
+            }
+        }
+    }
+}
