@@ -15,11 +15,11 @@ pipeline {
                 {
                     if (isUnix()) 
                     {
-                        sh 'mvn -fn clean package'
+                        sh 'mvn -fn clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd'
                     }
                     else
                     {
-                        bat 'mvn -fn clean package'
+                        bat 'mvn -fn clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd'
                     }
                  }
             }
